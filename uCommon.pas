@@ -238,7 +238,16 @@ begin
   end;
 end;
 
+
 function TCommon.Decode(Source: string): string;
+{-------------------------------------------------------------------------------
+  过程名:    TCommon.Decode
+  作者:      robert
+  日期:      2018.01.24
+  参数:      Source: string
+  返回值:    string
+  说明:      解密字符串
+-------------------------------------------------------------------------------}
 begin
   Result := SimpleEncrypt(Base64Decode(Source));
 end;
@@ -291,7 +300,17 @@ begin
   Result := IntToStr(DTI8(_Date));
 end;
 
+
+
 function TCommon.Encode(Source: string): string;
+{-------------------------------------------------------------------------------
+  过程名:    TCommon.Encode
+  作者:      robert
+  日期:      2018.01.24
+  参数:      Source: string
+  返回值:    string
+  说明:      加密字符串	
+-------------------------------------------------------------------------------}
 begin
   Result := Base64Encode(SimpleEncrypt(Source));
 end;
@@ -453,7 +472,17 @@ begin
   SetLength(Result, L);
 end;
 
+
+
 procedure TCommon.GetVersionFromFile(aFileName: string; var aMajor, aMinor, aRelease, aBuild: Integer);
+{-------------------------------------------------------------------------------
+  过程名:    TCommon.GetVersionFromFile
+  作者:      robert
+  日期:      2018.01.24
+  参数:      aFileName: string; var aMajor, aMinor, aRelease, aBuild: Integer
+  返回值:    无
+  说明:      从文件取得版本号	
+-------------------------------------------------------------------------------}
 type
   PVS_FIXEDFILEINFO = ^VS_FIXEDFILEINFO;
 var
@@ -539,7 +568,17 @@ begin
   Result := EncodeDate(Y, M, D);
 end;
 
+
+
 function TCommon.NEWID: string;
+{-------------------------------------------------------------------------------
+  过程名:    TCommon.NEWID
+  作者:      robert
+  日期:      2018.01.24
+  参数:      无
+  返回值:    string
+  说明:      新建一个ID值； guid格式	
+-------------------------------------------------------------------------------}
 var
   MyGUID: TGUID;
   MyWideChar: array[0..100] of WideChar;
@@ -579,7 +618,16 @@ begin
   Result := I8TD(StrToInt(_SDate));
 end;
 
+
 function TCommon.SimpleEncrypt(S: string): string;
+{-------------------------------------------------------------------------------
+  过程名:    TCommon.SimpleEncrypt
+  作者:      robert
+  日期:      2018.01.24
+  参数:      S: string
+  返回值:    string
+  说明:      加密字符串	
+-------------------------------------------------------------------------------}
 const
   THE_KEY = 'System$Utils$Char';
 var
