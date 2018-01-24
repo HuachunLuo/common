@@ -9,6 +9,7 @@ ip 发送测试的字符数　返回时间
 Can not find host!
 
 
+
 使用
 uses ping;
 procedure TForm1.Button1Click(Sender: TObject);
