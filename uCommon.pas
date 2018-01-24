@@ -1,6 +1,7 @@
 unit uCommon;
 
 interface
+uses SysUtils,Classes,Controls,windows;
 
 type
   TCommon = class(TPersistent)
@@ -32,11 +33,11 @@ type
     procedure PingServer(const AIP: string);
     function S8TD(_SDate: String): TDate;
     function SimpleEncrypt(S: string): string;
-    procedure WriteLog(const ALog: string);
     property CurrentPath: string read GetCurrentPath;
   end;
 
 implementation
+uses  NB30X, WinSock, ActiveX;
 
 {
 *********************************** TCommon ************************************
@@ -452,19 +453,19 @@ var
     日期:      2017.08.02
     参数:      const AIntDate: Integer
     返回值:    TDateTime
-    说明:      传入一个数字,返回时间格式的值
+    说明:      传入一个8位的数字日期格式,返回时间格式的值
   -------------------------------------------------------------------------------}
 
 begin
-  {if I <= 0 then
+  if AIntDate <= 0 then
   begin
     Result := Date;
     Exit;
   end;
-  Y := I div 10000;
-  M := I mod 10000 div 100;
-  D := I mod 100;
-  Result := EncodeDate(Y, M, D);}
+  Y := AIntDate div 10000;
+  M := AIntDate mod 10000 div 100;
+  D := AIntDate mod 100;
+  Result := EncodeDate(Y, M, D);
 end;
 
 function TCommon.NEWID: string;
@@ -526,15 +527,6 @@ begin
     if J = 0 then
       J := KeyL;
   end;
-end;
-
-procedure TCommon.WriteLog(const ALog: string);
-begin
-  if Assigned(FLog) then
-    if Length(trim(ALog)) = 0 then
-      FLog.Insert(0, ALog)
-    else
-      FLog.Insert(0, FormatDateTime('YY-MM-DD hh:mm:ss ', Now) + ALog);
 end;
 
 
